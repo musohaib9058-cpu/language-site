@@ -428,3 +428,21 @@ html.high-contrast .explorer-table tbody th {
   color: #ffffff;
 }
 html.high-contrast select:focus { outline-color: #00ffff; }
+
+/* Settings: the name box */
+.settings-form input[type="text"] {
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  font-size: 1rem;
+  padding: 0.5rem;
+  margin: 0.5rem 0 1rem;
+  border: 2px solid #003366;
+  border-radius: 6px;
+}
+html.high-contrast .settings-form input[type="text"] {
+  background: #000000;
+  color: #ffffff;
+  border-color: #ffff00;
+}

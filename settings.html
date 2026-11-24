@@ -25,9 +25,19 @@
 
   <main id="main">
     <h1>Settings</h1>
-    <p>Change how the website looks. Your choices are saved and used on every page.</p>
+    <p>Change how the website looks and add your name. Your choices are saved on this device and used on every page.</p>
 
-    <form class="settings-form" onsubmit="return false;">
+    <form class="settings-form" id="settings-form">
+      <fieldset>
+        <legend>Your name</legend>
+        <label for="learnerName">Your first name (used in the "My name is…" example in every lesson)</label>
+        <input type="text" id="learnerName" maxlength="30" autocomplete="given-name">
+        <div class="captcha-buttons">
+          <button type="submit" class="listen">Save my name</button>
+          <button type="button" id="clearName" class="listen">Remove my name</button>
+        </div>
+      </fieldset>
+
       <fieldset>
         <legend>Text size</legend>
         <label><input type="radio" name="textSize" value="normal"> Normal</label>
@@ -49,18 +59,21 @@
   </main>
 
   <footer>
-    <p>Made by Sohaib – ITNPBD4 project, 2026</p>
+    <p>Muhammad Sohaib</p>
   </footer>
 
   <script>
     const statusBox = document.getElementById("settings-status");
     const contrastBox = document.getElementById("highContrast");
+    const nameBox = document.getElementById("learnerName");
 
     function saveSetting(name, value) {
       try {
         localStorage.setItem(name, value);
+        return true;
       } catch (error) {
         statusBox.textContent = "Sorry, your browser could not save this setting.";
+        return false;
       }
     }
 
@@ -68,8 +81,31 @@
     const currentSize = readSetting("textSize") || "normal";
     document.querySelector('input[name="textSize"][value="' + currentSize + '"]').checked = true;
     contrastBox.checked = readSetting("highContrast") === "on";
+    nameBox.value = readSetting("learnerName") || "";
 
-    // Save and apply straight away when something changes
+    // Save the name when the form is submitted (button or Enter key)
+    document.getElementById("settings-form").addEventListener("submit", function (event) {
+      event.preventDefault();
+      const name = nameBox.value.trim();
+      if (name === "") {
+        statusBox.textContent = "Please type your name first, or press Remove my name.";
+        nameBox.focus();
+        return;
+      }
+      if (saveSetting("learnerName", name)) {
+        statusBox.textContent = "Thank you, " + name + ". Your name will now appear in every lesson.";
+      }
+    });
+
+    document.getElementById("clearName").addEventListener("click", function () {
+      try {
+        localStorage.removeItem("learnerName");
+      } catch (error) {}
+      nameBox.value = "";
+      statusBox.textContent = "Your name has been removed. Lessons will use the example name again.";
+    });
+
+    // Save and apply straight away when text size or colours change
     document.querySelectorAll('input[name="textSize"]').forEach(function (radio) {
       radio.addEventListener("change", function () {
         saveSetting("textSize", radio.value);

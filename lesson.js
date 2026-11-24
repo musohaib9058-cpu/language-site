@@ -1,8 +1,78 @@
-// Makes the "Listen" buttons speak the word out loud.
+// Makes the "Listen" buttons speak the word out loud,
+// and puts the learner's own name into the "My name is..." example.
 // Works on every lesson page (Urdu, Hindi, Chinese, Japanese, English).
 
 const statusBox = document.getElementById("speech-status");
 let voices = [];
+
+// ---------- 1. The learner's own name ----------
+
+// Every way the example name "Sohaib" is written in the lessons
+// (longer forms first, so "Sohaibu" is replaced before "Sohaib").
+const EXAMPLE_NAME_FORMS = [
+  " (the name is written in katakana)",
+  "Sohaibu", "so-hai-boo", "soh-HAYB",
+  "سہیب", "सोहैब", "ソハイブ", "Sohaib"
+];
+
+function readName() {
+  try {
+    const saved = localStorage.getItem("learnerName");
+    return saved ? saved.trim() : "";
+  } catch (error) {
+    return "";
+  }
+}
+
+function personaliseLesson() {
+  const table = document.querySelector(".lesson-table");
+  if (!table) return;
+
+  const name = readName();
+  const tip = document.createElement("p");
+  tip.className = "name-tip";
+
+  if (name === "") {
+    tip.innerHTML =
+      'Tip: "Sohaib" in this lesson is an example name. You can use your own name ' +
+      'by adding it on the <a href="settings.html">Settings page</a>.';
+    table.before(tip);
+    return;
+  }
+
+  tip.innerHTML =
+    'This lesson uses your name: <strong></strong>. You can change it on the ' +
+    '<a href="settings.html">Settings page</a>.';
+  tip.querySelector("strong").textContent = name;
+  table.before(tip);
+
+  function swapName(text) {
+    let result = text;
+    EXAMPLE_NAME_FORMS.forEach(function (form) {
+      const replacement = form.startsWith(" (") ? "" : name;
+      result = result.split(form).join(replacement);
+    });
+    return result;
+  }
+
+  // Change the visible words inside the table
+  const walker = document.createTreeWalker(table, NodeFilter.SHOW_TEXT);
+  let node;
+  while ((node = walker.nextNode())) {
+    node.nodeValue = swapName(node.nodeValue);
+  }
+
+  // Change what the Listen buttons say and what screen readers announce
+  table.querySelectorAll(".listen").forEach(function (button) {
+    button.dataset.say = swapName(button.dataset.say);
+    button.dataset.roman = swapName(button.dataset.roman);
+    button.setAttribute("aria-label", swapName(button.getAttribute("aria-label")));
+  });
+}
+
+personaliseLesson();
+
+// ---------- 2. The Listen buttons ----------
 
 // Browsers load their voices a moment after the page opens,
 // so we keep the list up to date when they arrive.
