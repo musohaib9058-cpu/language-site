@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Japanese Lesson 1 – Language Learning for Everyone</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="apply-settings.js"></script>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header>
+    <p class="site-name">Language Learning for Everyone</p>
+    <nav aria-label="Main menu">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="explorer.html">Language Explorer</a></li>
+        <li><a href="settings.html">Settings</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <h1>Japanese Lesson 1: Greetings and Basic Words</h1>
+    <p>
+      Japanese uses <strong>three writing systems</strong> together:
+      <strong>hiragana</strong> (for Japanese words and grammar),
+      <strong>katakana</strong> (mostly for foreign words and names) and
+      <strong>kanji</strong> (characters that came from Chinese). The
+      "How to say it" column uses <strong>Romaji</strong>, which writes
+      Japanese sounds in English letters. Press a <strong>Listen</strong>
+      button to hear the word.
+    </p>
+
+    <!-- Screen readers announce messages written here -->
+    <p id="speech-status" class="status" aria-live="polite"></p>
+
+    <table class="lesson-table">
+      <caption>Japanese greetings and basic words</caption>
+      <thead>
+        <tr>
+          <th scope="col">Japanese</th>
+          <th scope="col">How to say it (Romaji)</th>
+          <th scope="col">English meaning</th>
+          <th scope="col">Listen</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="japanese" lang="ja">こんにちは</span></td>
+          <td>konnichiwa</td>
+          <td>Hello</td>
+          <td><button class="listen" data-say="こんにちは" data-roman="kon-nee-chee-wah" data-lang="ja-JP" aria-label="Listen to konnichiwa">🔊 Listen</button></td>
+        </tr>
+        <tr>
+          <td><span class="japanese" lang="ja">お元気ですか？</span></td>
+          <td>o-genki desu ka?</td>
+          <td>How are you?</td>
+          <td><button class="listen" data-say="お元気ですか？" data-roman="oh gen-kee dess kah" data-lang="ja-JP" aria-label="Listen to o-genki desu ka">🔊 Listen</button></td>
+        </tr>
+        <tr>
+          <td><span class="japanese" lang="ja">元気です</span></td>
+          <td>genki desu</td>
+          <td>I am fine</td>
+          <td><button class="listen" data-say="元気です" data-roman="gen-kee dess" data-lang="ja-JP" aria-label="Listen to genki desu">🔊 Listen</button></td>
+        </tr>
+        <tr>
+          <td><span class="japanese" lang="ja">私の名前はソハイブです</span></td>
+          <td>watashi no namae wa Sohaibu desu</td>
+          <td>My name is Sohaib (the name is written in katakana)</td>
+          <td><button class="listen" data-say="私の名前はソハイブです" data-roman="wah-tah-shee no nah-mah-eh wah so-hai-boo dess" data-lang="ja-JP" aria-label="Listen to watashi no namae wa Sohaibu desu">🔊 Listen</button></td>
+        </tr>
+        <tr>
+          <td><span class="japanese" lang="ja">ありがとう</span></td>
+          <td>arigatō</td>
+          <td>Thank you</td>
+          <td><button class="listen" data-say="ありがとう" data-roman="ah-ree-gah-toh" data-lang="ja-JP" aria-label="Listen to arigato">🔊 Listen</button></td>
+        </tr>
+        <tr>
+          <td><span class="japanese" lang="ja">お願いします</span></td>
+          <td>onegai shimasu</td>
+          <td>Please</td>
+          <td><button class="listen" data-say="お願いします" data-roman="oh-neh-gai shee-mass" data-lang="ja-JP" aria-label="Listen to onegai shimasu">🔊 Listen</button></td>
+        </tr>
+        <tr>
+          <td><span class="japanese" lang="ja">はい</span></td>
+          <td>hai</td>
+          <td>Yes</td>
+          <td><button class="listen" data-say="はい" data-roman="hai" data-lang="ja-JP" aria-label="Listen to hai">🔊 Listen</button></td>
+        </tr>
+        <tr>
+          <td><span class="japanese" lang="ja">いいえ</span></td>
+          <td>iie</td>
+          <td>No</td>
+          <td><button class="listen" data-say="いいえ" data-roman="ee-eh" data-lang="ja-JP" aria-label="Listen to iie">🔊 Listen</button></td>
+        </tr>
+        <tr>
+          <td><span class="japanese" lang="ja">水</span></td>
+          <td>mizu</td>
+          <td>Water</td>
+          <td><button class="listen" data-say="水" data-roman="mee-zoo" data-lang="ja-JP" aria-label="Listen to mizu">🔊 Listen</button></td>
+        </tr>
+        <tr>
+          <td><span class="japanese" lang="ja">さようなら</span></td>
+          <td>sayōnara</td>
+          <td>Goodbye</td>
+          <td><button class="listen" data-say="さようなら" data-roman="sah-yoh-nah-rah" data-lang="ja-JP" aria-label="Listen to sayonara">🔊 Listen</button></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p><a href="index.html">← Back to all languages</a></p>
+  </main>
+
+  <footer>
+    <p>Made by Sohaib – ITNPBD4 project, 2026</p>
+  </footer>
+
+  <script src="lesson.js"></script>
+</body>
+</html>

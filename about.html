@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About – Language Learning for Everyone</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="apply-settings.js"></script>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header>
+    <p class="site-name">Language Learning for Everyone</p>
+    <nav aria-label="Main menu">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="explorer.html">Language Explorer</a></li>
+        <li><a href="settings.html">Settings</a></li>
+        <li><a href="about.html" aria-current="page">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <h1>About this website</h1>
+    <p>
+      Language Learning for Everyone teaches beginner words in English, Hindi,
+      Urdu, Chinese and Japanese. It is designed for everyone, including people
+      who are blind, deaf or colour blind.
+    </p>
+
+    <h2>How this website is accessible</h2>
+    <ul>
+      <li>Everything works with a keyboard only (Tab, Enter, Space and arrow keys).</li>
+      <li>It works with screen readers: clear headings, named buttons and spoken messages.</li>
+      <li>Every word is marked with its language, so screen readers pronounce it correctly.</li>
+      <li>Everything you can hear is also written down, for deaf users.</li>
+      <li>Colour is never the only way information is shown, for colour-blind users.</li>
+      <li>The Settings page offers bigger text and a high-contrast mode.</li>
+      <li>Every page has the same layout and menu.</li>
+    </ul>
+
+    <h2>How this website was made</h2>
+    <p>
+      This website was made by Sohaib as a university project (ITNPBD4). The code
+      and lesson content were created with help from an AI assistant. All Urdu
+      and Hindi words were checked by a native speaker. Chinese and Japanese words
+      were checked with online translation tools, so they may still contain
+      mistakes.
+    </p>
+
+    <h2>Contact us</h2>
+    <p class="note">
+      <strong>Please note:</strong> this is a demonstration form. Messages are not
+      actually sent anywhere.
+    </p>
+
+    <form id="contact-form" class="contact-form" novalidate>
+      <label for="name">Your name</label>
+      <input type="text" id="name" name="name" autocomplete="name">
+
+      <label for="message">Your message</label>
+      <textarea id="message" name="message" rows="4"></textarea>
+
+      <fieldset class="captcha">
+        <legend>Prove you are human</legend>
+        <p id="captcha-help">
+          Type the 5 numbers shown in the picture. If you cannot see the picture,
+          press <strong>Listen to the numbers</strong> to hear them instead.
+        </p>
+
+        <canvas id="captcha-image" width="240" height="70" role="img"
+                aria-label="Security picture with 5 numbers. If you cannot see it, use the Listen to the numbers button.">
+        </canvas>
+
+        <div class="captcha-buttons">
+          <button type="button" id="captcha-listen" class="listen">🔊 Listen to the numbers</button>
+          <button type="button" id="captcha-new" class="listen">↻ New numbers</button>
+        </div>
+
+        <label for="captcha-answer">The 5 numbers</label>
+        <input type="text" id="captcha-answer" inputmode="numeric"
+               autocomplete="off" aria-describedby="captcha-help">
+
+        <p class="small-note">
+          If you cannot see the picture or hear the numbers, please ask someone you
+          trust for help, or contact the university and we will reply another way.
+        </p>
+      </fieldset>
+
+      <button type="submit" class="listen">Send message</button>
+    </form>
+
+    <!-- Screen readers announce this message -->
+    <p id="form-status" class="status" aria-live="polite"></p>
+  </main>
+
+  <footer>
+    <p>Made by Sohaib – ITNPBD4 project, 2026</p>
+  </footer>
+
+  <script>
+    const canvas = document.getElementById("captcha-image");
+    const ctx = canvas.getContext("2d");
+    const formStatus = document.getElementById("form-status");
+    let captchaCode = "";
+
+    // Make 5 random numbers and draw them as a slightly messy picture
+    function newCaptcha() {
+      captchaCode = "";
+      for (let i = 0; i < 5; i++) {
+        captchaCode += Math.floor(Math.random() * 10);
+      }
+
+      ctx.fillStyle = "#f2f2f2";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // a few lines to make it harder for robots
+      for (let i = 0; i < 5; i++) {
+        ctx.strokeStyle = "#999999";
+        ctx.beginPath();
+        ctx.moveTo(Math.random() * 240, Math.random() * 70);
+        ctx.lineTo(Math.random() * 240, Math.random() * 70);
+        ctx.stroke();
+      }
+
+      // draw each number with a small tilt
+      ctx.font = "bold 36px Arial";
+      ctx.fillStyle = "#000000";
+      for (let i = 0; i < 5; i++) {
+        ctx.save();
+        ctx.translate(30 + i * 42, 48);
+        ctx.rotate((Math.random() - 0.5) * 0.5);
+        ctx.fillText(captchaCode[i], -10, 0);
+        ctx.restore();
+      }
+
+      document.getElementById("captcha-answer").value = "";
+    }
+
+    // Read the numbers out loud, slowly, one by one
+    document.getElementById("captcha-listen").addEventListener("click", function () {
+      if (!("speechSynthesis" in window)) {
+        formStatus.textContent = "Sorry, your browser cannot play sound.";
+        return;
+      }
+      speechSynthesis.cancel();
+      const speech = new SpeechSynthesisUtterance(captchaCode.split("").join(", "));
+      speech.lang = "en-GB";
+      speech.rate = 0.6;
+      speechSynthesis.speak(speech);
+    });
+
+    document.getElementById("captcha-new").addEventListener("click", function () {
+      newCaptcha();
+      formStatus.textContent = "New numbers have been made.";
+    });
+
+    // Check the form when "Send message" is pressed
+    document.getElementById("contact-form").addEventListener("submit", function (event) {
+      event.preventDefault();
+      const name = document.getElementById("name").value.trim();
+      const message = document.getElementById("message").value.trim();
+      const answer = document.getElementById("captcha-answer").value.trim();
+
+      if (name === "" || message === "") {
+        formStatus.textContent = "Error: please fill in your name and your message.";
+        return;
+      }
+      if (answer !== captchaCode) {
+        formStatus.textContent =
+          "Error: the numbers did not match. Please try again, or press Listen to hear them.";
+        newCaptcha();
+        document.getElementById("captcha-answer").focus();
+        return;
+      }
+      formStatus.textContent =
+        "Thank you, " + name + ". This is a demonstration, so your message was not really sent.";
+      this.reset();
+      newCaptcha();
+    });
+
+    newCaptcha();
+  </script>
+</body>
+</html>

@@ -1,0 +1,430 @@
+/* Basic look: big, readable text and strong contrast */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: #1a1a1a;
+  background: #ffffff;
+  margin: 0;
+}
+
+/* Skip link: hidden until a keyboard user presses Tab */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+}
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  background: #000;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  z-index: 10;
+}
+
+/* Header and menu (same on every page) */
+header {
+  background: #003366;
+  color: #ffffff;
+  padding: 1rem 2rem;
+}
+.site-name {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin: 0 0 0.5rem;
+}
+nav ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+nav a {
+  color: #ffffff;
+}
+nav a[aria-current="page"] {
+  font-weight: bold;
+  text-decoration: underline 3px;
+}
+
+/* Main content */
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Language buttons */
+.language-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+.language-list a {
+  display: block;
+  border: 3px solid #003366;
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+  text-decoration: none;
+  color: #003366;
+}
+.language-list a:hover {
+  background: #e6f0ff;
+}
+.native {
+  display: block;
+  font-size: 2rem;
+}
+.english-name {
+  display: block;
+  font-weight: bold;
+}
+
+/* Very clear focus outline for keyboard users */
+a:focus,
+button:focus {
+  outline: 4px solid #ff9900;
+  outline-offset: 3px;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  border-top: 1px solid #ccc;
+}/* Basic look: big, readable text and strong contrast */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: #1a1a1a;
+  background: #ffffff;
+  margin: 0;
+}
+
+/* Skip link: hidden until a keyboard user presses Tab */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+}
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  background: #000;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  z-index: 10;
+}
+
+/* Header and menu (same on every page) */
+header {
+  background: #003366;
+  color: #ffffff;
+  padding: 1rem 2rem;
+}
+.site-name {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin: 0 0 0.5rem;
+}
+nav ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+nav a {
+  color: #ffffff;
+}
+nav a[aria-current="page"] {
+  font-weight: bold;
+  text-decoration: underline 3px;
+}
+
+/* Main content */
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Language buttons */
+.language-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+.language-list a {
+  display: block;
+  border: 3px solid #003366;
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+  text-decoration: none;
+  color: #003366;
+}
+.language-list a:hover {
+  background: #e6f0ff;
+}
+.native {
+  display: block;
+  font-size: 2rem;
+}
+.english-name {
+  display: block;
+  font-weight: bold;
+}
+
+/* Very clear focus outline for keyboard users */
+a:focus,
+button:focus {
+  outline: 4px solid #ff9900;
+  outline-offset: 3px;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  border-top: 1px solid #ccc;
+}
+
+
+/* ---------- Lesson pages ---------- */
+
+/* Message box for the Listen buttons */
+.status:not(:empty) {
+  background: #fff4d6;
+  border: 2px solid #8a6d00;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+}
+
+/* Word table */
+.lesson-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+}
+.lesson-table caption {
+  text-align: left;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+.lesson-table th,
+.lesson-table td {
+  border: 2px solid #003366;
+  padding: 0.75rem;
+  text-align: left;
+  vertical-align: middle;
+}
+.lesson-table th {
+  background: #003366;
+  color: #ffffff;
+}
+
+/* Urdu writing: bigger, with a font that shows Urdu clearly */
+.urdu {
+  font-family: "Noto Nastaliq Urdu", "Jameel Noori Nastaleeq", "Segoe UI", Arial, sans-serif;
+  font-size: 1.8rem;
+  line-height: 2.2;
+}
+
+/* Listen buttons: big and easy to press */
+.listen {
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0.6rem 1rem;
+  background: #003366;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.listen:hover {
+  background: #0055aa;
+}
+
+/* Hindi writing: bigger and clear */
+.hindi {
+  font-family: "Noto Sans Devanagari", "Nirmala UI", "Mangal", Arial, sans-serif;
+  font-size: 1.8rem;
+  line-height: 1.8;
+}
+/* English words: bigger and clear */
+.english-word {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+/* Chinese characters: bigger and clear */
+.chinese {
+  font-family: "Microsoft YaHei", "Noto Sans SC", "PingFang SC", sans-serif;
+  font-size: 2rem;
+}
+
+/* Japanese writing: bigger and clear */
+.japanese {
+  font-family: "Yu Gothic", "Meiryo", "Noto Sans JP", sans-serif;
+  font-size: 2rem;
+}
+
+/* ---------- Settings: text size ---------- */
+html.text-large { font-size: 125%; }
+html.text-xlarge { font-size: 150%; }
+
+/* ---------- Settings page form ---------- */
+.settings-form fieldset {
+  border: 2px solid #003366;
+  border-radius: 10px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.settings-form legend {
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding: 0 0.5rem;
+}
+.settings-form label {
+  display: block;
+  padding: 0.4rem 0;
+  cursor: pointer;
+}
+.settings-form input {
+  width: 1.3rem;
+  height: 1.3rem;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+input:focus {
+  outline: 4px solid #ff9900;
+  outline-offset: 3px;
+}
+
+/* ---------- Settings: high contrast ---------- */
+html.high-contrast body { background: #000000; color: #ffffff; }
+html.high-contrast header { background: #000000; border-bottom: 3px solid #ffff00; }
+html.high-contrast a,
+html.high-contrast nav a { color: #ffff00; }
+html.high-contrast .language-list a { color: #ffff00; border-color: #ffff00; }
+html.high-contrast .language-list a:hover { background: #222222; }
+html.high-contrast .lesson-table th { background: #000000; color: #ffff00; border-color: #ffffff; }
+html.high-contrast .lesson-table td { border-color: #ffffff; }
+html.high-contrast .listen { background: #ffff00; color: #000000; }
+html.high-contrast .status:not(:empty) { background: #000000; color: #ffffff; border-color: #ffff00; }
+html.high-contrast .settings-form fieldset { border-color: #ffff00; }
+html.high-contrast footer { border-top-color: #ffffff; }
+html.high-contrast a:focus,
+html.high-contrast button:focus,
+html.high-contrast input:focus { outline-color: #00ffff; }
+
+
+/* ---------- About page: contact form and CAPTCHA ---------- */
+.contact-form label {
+  display: block;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+.contact-form input[type="text"],
+.contact-form textarea {
+  width: 100%;
+  max-width: 500px;
+  font-size: 1rem;
+  padding: 0.5rem;
+  border: 2px solid #003366;
+  border-radius: 6px;
+}
+textarea:focus {
+  outline: 4px solid #ff9900;
+  outline-offset: 3px;
+}
+.captcha {
+  border: 2px solid #003366;
+  border-radius: 10px;
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+}
+.captcha legend {
+  font-weight: bold;
+  padding: 0 0.5rem;
+}
+#captcha-image {
+  border: 2px solid #003366;
+  display: block;
+  margin: 0.5rem 0;
+}
+.captcha-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.note,
+.small-note {
+  font-size: 0.95rem;
+}
+
+html.high-contrast .contact-form input[type="text"],
+html.high-contrast .contact-form textarea {
+  background: #000000;
+  color: #ffffff;
+  border-color: #ffff00;
+}
+html.high-contrast .captcha { border-color: #ffff00; }
+html.high-contrast textarea:focus { outline-color: #00ffff; }
+
+
+/* ---------- Language Explorer ---------- */
+.explorer-form label {
+  display: block;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+.explorer-form input[type="text"],
+.explorer-form select {
+  width: 100%;
+  max-width: 500px;
+  font-size: 1rem;
+  padding: 0.5rem;
+  border: 2px solid #003366;
+  border-radius: 6px;
+}
+.explorer-form .checkbox-label {
+  font-weight: normal;
+}
+select:focus {
+  outline: 4px solid #ff9900;
+  outline-offset: 3px;
+}
+.result-status {
+  font-weight: bold;
+  margin-top: 1.5rem;
+}
+.explorer-table tbody th {
+  background: transparent;
+  color: inherit;
+  font-weight: bold;
+}
+.explorer-table td,
+.explorer-table th {
+  font-size: 1rem;
+}
+
+html.high-contrast .explorer-form input[type="text"],
+html.high-contrast .explorer-form select {
+  background: #000000;
+  color: #ffffff;
+  border-color: #ffff00;
+}
+html.high-contrast .explorer-table tbody th {
+  background: #000000;
+  color: #ffffff;
+}
+html.high-contrast select:focus { outline-color: #00ffff; }

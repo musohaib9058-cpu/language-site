@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Language Explorer – Language Learning for Everyone</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="apply-settings.js"></script>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header>
+    <p class="site-name">Language Learning for Everyone</p>
+    <nav aria-label="Main menu">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="explorer.html" aria-current="page">Language Explorer</a></li>
+        <li><a href="settings.html">Settings</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <h1>Language Explorer</h1>
+    <p>
+      Explore <strong id="total-count">thousands of</strong> languages from around
+      the world, including more than 150 sign languages. Search by language name,
+      country or language family.
+    </p>
+
+    <form class="explorer-form" onsubmit="return false;" role="search">
+      <label for="search">Search</label>
+      <input type="text" id="search" autocomplete="off"
+             placeholder="For example: Urdu, Pakistan or Sign Language">
+
+      <label for="region">World region</label>
+      <select id="region">
+        <option value="">All regions</option>
+        <option value="Africa">Africa</option>
+        <option value="Australia">Australia</option>
+        <option value="Eurasia">Europe and Asia</option>
+        <option value="North America">North America</option>
+        <option value="Papunesia">Papua New Guinea and the Pacific islands</option>
+        <option value="South America">South America</option>
+      </select>
+
+      <label class="checkbox-label">
+        <input type="checkbox" id="sign-only"> Show sign languages only
+      </label>
+    </form>
+
+    <!-- Screen readers announce how many results were found -->
+    <p id="result-status" class="result-status" aria-live="polite"></p>
+
+    <table class="lesson-table explorer-table">
+      <caption>World languages</caption>
+      <thead>
+        <tr>
+          <th scope="col">Language</th>
+          <th scope="col">Code</th>
+          <th scope="col">Language family</th>
+          <th scope="col">World region</th>
+          <th scope="col">Countries</th>
+        </tr>
+      </thead>
+      <tbody id="results"></tbody>
+    </table>
+
+    <button type="button" id="show-more" class="listen">Show 50 more</button>
+
+    <p class="small-note">
+      Language data comes from <a href="https://glottolog.org">Glottolog</a>
+      (Max Planck Institute for Evolutionary Anthropology), used under the
+      Creative Commons Attribution 4.0 licence.
+    </p>
+  </main>
+
+  <footer>
+    <p>Made by Sohaib – ITNPBD4 project, 2026</p>
+  </footer>
+
+  <script src="languages.js"></script>
+  <script>
+    const PAGE_SIZE = 50;
+    const searchBox = document.getElementById("search");
+    const regionBox = document.getElementById("region");
+    const signBox = document.getElementById("sign-only");
+    const results = document.getElementById("results");
+    const statusBox = document.getElementById("result-status");
+    const moreButton = document.getElementById("show-more");
+
+    let matches = [];
+    let shown = 0;
+    let statusTimer;
+
+    document.getElementById("total-count").textContent =
+      LANGUAGES.length.toLocaleString("en-GB");
+
+    // Find the languages that match the search, region and sign-language choice
+    function findMatches() {
+      const text = searchBox.value.trim().toLowerCase();
+      const region = regionBox.value;
+      const signOnly = signBox.checked;
+
+      matches = LANGUAGES.filter(function (lang) {
+        const [name, code, family, regions, countries] = lang;
+        if (region && !regions.includes(region)) return false;
+        if (signOnly && family !== "Sign Language") return false;
+        if (text === "") return true;
+        return (
+          name.toLowerCase().includes(text) ||
+          code === text ||
+          family.toLowerCase().includes(text) ||
+          countries.toLowerCase().includes(text)
+        );
+      });
+
+      results.innerHTML = "";
+      shown = 0;
+      showMore();
+    }
+
+    // Add the next 50 matches to the table
+    function showMore() {
+      const next = matches.slice(shown, shown + PAGE_SIZE);
+      next.forEach(function (lang) {
+        const row = document.createElement("tr");
+        lang.forEach(function (value, index) {
+          const cell = document.createElement(index === 0 ? "th" : "td");
+          if (index === 0) cell.scope = "row";
+          cell.textContent = value || "Unknown";
+          row.appendChild(cell);
+        });
+        results.appendChild(row);
+      });
+      shown += next.length;
+      moreButton.hidden = shown >= matches.length;
+      updateStatus();
+    }
+
+    // Wait until the user stops typing before announcing, so screen readers are not flooded
+    function updateStatus() {
+      clearTimeout(statusTimer);
+      statusTimer = setTimeout(function () {
+        if (matches.length === 0) {
+          statusBox.textContent = "No languages found. Try a different search.";
+        } else {
+          statusBox.textContent =
+            "Showing " + shown.toLocaleString("en-GB") + " of " +
+            matches.length.toLocaleString("en-GB") + " languages.";
+        }
+      }, 500);
+    }
+
+    searchBox.addEventListener("input", findMatches);
+    regionBox.addEventListener("change", findMatches);
+    signBox.addEventListener("change", findMatches);
+    moreButton.addEventListener("click", showMore);
+
+    findMatches();
+  </script>
+</body>
+</html>

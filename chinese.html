@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chinese Lesson 1 – Language Learning for Everyone</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="apply-settings.js"></script>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header>
+    <p class="site-name">Language Learning for Everyone</p>
+    <nav aria-label="Main menu">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="explorer.html">Language Explorer</a></li>
+        <li><a href="settings.html">Settings</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <h1>Chinese (Mandarin) Lesson 1: Greetings and Basic Words</h1>
+    <p>
+      Chinese is written with <strong>characters</strong>. Each character is a
+      word or part of a word. The "How to say it" column uses
+      <strong>Pinyin</strong>, which writes Chinese sounds in English letters.
+      The small marks above letters (like ǎ) show the <strong>tone</strong>:
+      in Chinese, the same sound with a different tone can mean a different word.
+      Press a <strong>Listen</strong> button to hear the tones.
+    </p>
+
+    <!-- Screen readers announce messages written here -->
+    <p id="speech-status" class="status" aria-live="polite"></p>
+
+    <table class="lesson-table">
+      <caption>Chinese greetings and basic words</caption>
+      <thead>
+        <tr>
+          <th scope="col">Chinese</th>
+          <th scope="col">How to say it (Pinyin)</th>
+          <th scope="col">English meaning</th>
+          <th scope="col">Listen</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="chinese" lang="zh-CN">你好</span></td>
+          <td>nǐ hǎo</td>
+          <td>Hello</td>
+          <td><button class="listen" data-say="你好" data-roman="nee how" data-lang="zh-CN" aria-label="Listen to ni hao">🔊 Listen</button></td>
+        </tr>
+        <tr>
+          <td><span class="chinese" lang="zh-CN">你好吗？</span></td>
+          <td>nǐ hǎo ma?</td>
+          <td>How are you?</td>
+          <td><button class="listen" data-say="你好吗？" data-roman="nee how mah" data-lang="zh-CN" aria-label="Listen to ni hao ma">🔊 Listen</button></td>
+        </tr>
+        <tr>
+          <td><span class="chinese" lang="zh-CN">我很好</span></td>
+          <td>wǒ hěn hǎo</td>
+          <td>I am fine</td>
+          <td><button class="listen" data-say="我很好" data-roman="woh hun how" data-lang="zh-CN" aria-label="Listen to wo hen hao">🔊 Listen</button></td>
+        </tr>
+        <tr>
+          <td><span class="chinese" lang="zh-CN">我叫 Sohaib</span></td>
+          <td>wǒ jiào Sohaib</td>
+          <td>My name is Sohaib</td>
+          <td><button class="listen" data-say="我叫 Sohaib" data-roman="woh jee-ow Sohaib" data-lang="zh-CN" aria-label="Listen to wo jiao Sohaib">🔊 Listen</button></td>
+        </tr>
+        <tr>
+          <td><span class="chinese" lang="zh-CN">谢谢</span></td>
+          <td>xièxie</td>
+          <td>Thank you</td>
+          <td><button class="listen" data-say="谢谢" data-roman="shyeh-shyeh" data-lang="zh-CN" aria-label="Listen to xiexie">🔊 Listen</button></td>
+        </tr>
+        <tr>
+          <td><span class="chinese" lang="zh-CN">请</span></td>
+          <td>qǐng</td>
+          <td>Please</td>
+          <td><button class="listen" data-say="请" data-roman="ching" data-lang="zh-CN" aria-label="Listen to qing">🔊 Listen</button></td>
+        </tr>
+        <tr>
+          <td><span class="chinese" lang="zh-CN">是的</span></td>
+          <td>shì de</td>
+          <td>Yes</td>
+          <td><button class="listen" data-say="是的" data-roman="shir duh" data-lang="zh-CN" aria-label="Listen to shi de">🔊 Listen</button></td>
+        </tr>
+        <tr>
+          <td><span class="chinese" lang="zh-CN">不是</span></td>
+          <td>bú shì</td>
+          <td>No</td>
+          <td><button class="listen" data-say="不是" data-roman="boo shir" data-lang="zh-CN" aria-label="Listen to bu shi">🔊 Listen</button></td>
+        </tr>
+        <tr>
+          <td><span class="chinese" lang="zh-CN">水</span></td>
+          <td>shuǐ</td>
+          <td>Water</td>
+          <td><button class="listen" data-say="水" data-roman="shway" data-lang="zh-CN" aria-label="Listen to shui">🔊 Listen</button></td>
+        </tr>
+        <tr>
+          <td><span class="chinese" lang="zh-CN">再见</span></td>
+          <td>zàijiàn</td>
+          <td>Goodbye</td>
+          <td><button class="listen" data-say="再见" data-roman="dzai jee-en" data-lang="zh-CN" aria-label="Listen to zaijian">🔊 Listen</button></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p><a href="index.html">← Back to all languages</a></p>
+  </main>
+
+  <footer>
+    <p>Made by Sohaib – ITNPBD4 project, 2026</p>
+  </footer>
+
+  <script src="lesson.js"></script>
+</body>
+</html>
